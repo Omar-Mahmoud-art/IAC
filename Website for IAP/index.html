@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>International Space Program</title>
+    <style>
+    @font-face {
+      font-family: "custom-font-woo";
+      src: url("CrimsonPro-VariableFont_wght.ttf") format("truetype");
+    }
+    p, h3, h1, .big-text , span{
+      font-family: custom-font-woo;
+      color: #f18636;
+      font-size: x-large;
+    }
+    .big-text {
+      font-size: 200%;
+    }
+    h3 {
+      margin: 40px;
+    }
+    .shell {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      background: url('your-background.avif') no-repeat center center fixed;
+      background-size: cover;
+      padding: 24px 0;
+    }
+    .container_1, .container_2, .container_3 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      width: 100%;
+      max-width: 1200px;
+      min-height: 200px;
+      background-color: rgba(22, 4, 42, 0.7);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.8);
+      padding: 20px;
+      margin-bottom: 100px;
+    }
+    .container_1 {
+      margin-top: 20%;
+    }
+    .container_2 {
+      min-height: 400px;
+      background-color: #16042a;
+    }
+    .container_3 {
+      display: block;
+      min-height: 400px;
+      background-color: #16042a;
+    }
+    .cool-space-image {
+      border-radius: 12px;
+      max-width: 100%;
+      height: auto;
+      transition: transform 0.5s ease-in-out;
+    }
+    .cool-space-image:hover {
+      transform: scale(1.1);
+    }
+    .complete-btn {
+      margin: 80px;
+      padding: 40px 80px;
+        border-radius: 8px;
+        border: none;
+      cursor: pointer;
+      background: #f18636;
+      color: white;
+      font-weight: bold;
+        transition: transform 0.4s ease-in-out;
+      }
+      .complete-btn:hover{
+          transform: translateY(-20%);
+      }
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      overflow-x: hidden;
+    }
+    .box {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.6s ease-out;
+    }
+    .box.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .container-header {
+      position: fixed;
+      background-color: rgba(22, 4, 42, 0.7);
+      border-radius: 20px;
+      margin-top: -2%;
+      width: 100%;
+      z-index: 9999;
+        align-items: stretch;
+      padding: 10px;
+    }
+.container-header button {
+  background: #f18636;
+  color: white;
+  border-style: solid;
+  border-color: black;
+  border-width: 0 1px;  /* only left/right borders */
+  padding: 0 20px;      /* remove vertical padding, only horizontal */
+  cursor: pointer;
+  font-weight: bold;
+}
+
+    .container div {
+      flex-wrap: wrap;
+      justify-content: center;
+      text-align: left;
+    }
+
+    /* 📱 Responsive fixes for mobile */
+    @media (max-width: 768px) {
+      .container_1, .container_2 {
+        flex-direction: column;   /* stack vertically */
+        text-align: center;
+      }
+      .big-text {
+        font-size: 150%; /* shrink big text */
+      }
+      p, h3 {
+        font-size: medium;
+        margin: 20px;
+      }
+      .complete-btn {
+          margin: 40px;
+          padding: 20px 40px;
+          font-size: medium;
+      }
+
+      .container-header img {
+        width: 120px; /* smaller logo */
+      }
+      .container-header span {
+        font-size: x-large;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .big-text {
+        font-size: 120%;
+      }
+      .container_1, .container_2, .container_3 {
+        margin-bottom: 50px;
+        padding: 15px;
+      }
+      .container_1{
+          margin-top: 20%;
+      }
+      .complete-btn {
+        width: 100%;
+        margin: 20px 0;
+      }
+      .container-header{
+          margin-top: -9%;
+      }
+      span{
+          font-size: large !important;
+      }
+    }
+    .hoverer:hover{
+    	transform: scale(1.05);
+    }
+    </style>
+</head>
+<body>
+    <div class="shell">
+        <div class="container-header">
+          <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+            <img src="logo.png" alt="icon" width="200">
+            <span style="font-family: custom-font-woo; color:#f18636"><b>International Astronomy Program</b></span>
+              <button onclick="document.querySelector('.complete-btn').scrollIntoView({behavior: 'smooth'});">APPLY</button>
+              <button onclick="document.querySelector('.container_1').scrollIntoView({behavior: 'smooth', block:'center'});">DESCRIPTION</button>
+          </div>
+        </div>
+        <div class="container_1 hoverer">
+            <span class="big-text">The universe is endless — a boundless ocean of mystery and beauty. Above us stretches a sky filled with billions of stars, each one a sun, each one a beacon calling us to explore. Yet what we see with our eyes is only the beginning of the cosmic story.</span>
+            <img src="space%20image.webp" class="cool-space-image">
+        </div>
+
+        <div class="container_2 hoverer">
+            <h3>Imagine the swirling arms of galaxies, immense and luminous, holding together billions of stars, worlds, and untold wonders. Think of black holes — invisible giants with gravity so powerful that even light cannot escape, reshaping the very fabric of space and time. Picture the colorful clouds of nebulae, where stars are born in brilliant cradles of dust and gas, glowing like cosmic masterpieces painted across the heavens.</h3>
+            <h3>Beyond them lie countless planets — some orbiting stars much like our Sun, others in distant corners where life might be waiting. Pulsars spin with incredible speed, sending beams of light across space like cosmic lighthouses. Quasars shine with the energy of entire galaxies. And still, beyond all we know, there remain mysteries that challenge our imagination: dark matter, dark energy, and the very edge of the universe itself.</h3>
+            <h3>Every discovery reveals just how small we are — and yet, how extraordinary our place in the cosmos can be. To look into space is to look into time itself, to see the past written in starlight that has traveled millions, even billions, of years to reach us.</h3>
+        </div>
+
+        <div class="container_3 hoverer">
+            <p>✨ This is the wonder of astronomy: a chance not only to look up, but to journey outward, to connect with the universe that has shaped us and continues to inspire us.</p>
+            <p>🌠 Don’t miss this opportunity. Apply now, and join us on this extraordinary journey to explore, to discover, and to dream beyond the stars.</p>
+            <center>
+              <button onclick="window.open('Appliance.html','_self')" class="complete-btn hoverer box">APPLY</button>
+                <p style="color: gray">Closes on 9/30/2025</p>
+            </center>
+        </div>
+    </div>
+<script>
+  const boxes = document.querySelectorAll('.box');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  }, { threshold: 0.1 });
+  boxes.forEach(box => observer.observe(box));
+</script>
+</body>
+</html>

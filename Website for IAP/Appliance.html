@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Apply</title>
+  <style>
+    @font-face {
+      font-family: "custom-font-woo";
+      src: url("CrimsonPro-VariableFont_wght.ttf") format("truetype");
+    }
+    p, h1 {
+      font-family: custom-font-woo;
+      color: #f18636;
+    }
+    .Title {
+        font-size: clamp(1.2rem, 5vw, 3rem);
+        font-family: custom-font-woo;
+        color:#f18636;
+    }
+
+    .shell {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      background: url('your-background.avif') no-repeat center center fixed;
+      background-size: cover;
+      padding: 24px 0;
+    }
+
+    .container {
+      width: 80%;
+      max-width: 900px;
+      min-height: 600px;
+      background-color: #16042a;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.8);
+      padding: 20px;
+    }
+
+    .editable[contenteditable="true"] {
+      padding: 10px;
+      min-height: 30px;
+      min-width: 80px;
+      outline: none;
+      background-color: #f9f9f9;
+      color: #000000;
+      font-family: Arial, sans-serif;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      height: auto;
+      overflow: visible;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    #complete-btn {
+	margin: 20px;
+	padding: 10px 20px;
+	border-radius: 12px;
+	border: none;
+	cursor: pointer;
+	background: #f18636;
+	color: white;
+	font-weight: bold;
+	width: 220px;      /* desktop width */
+	max-width: 90%;
+    }
+
+@media (max-width: 768px) {
+  #complete-btn {
+    width: 90%;
+    max-width: 400px;
+    padding: 16px 20px;
+    font-size: 1.1rem;
+  }
+}
+    @keyframes shake {
+      0%   { transform: translateX(0); }
+      20%  { transform: translateX(-10px); }
+      40%  { transform: translateX(10px); }
+      60%  { transform: translateX(-10px); }
+      80%  { transform: translateX(10px); }
+      100% { transform: translateX(0); }
+    }
+
+    .shake {
+      animation: shake 0.4s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+<section class="pdf">
+  <div class="shell">
+    <div class="container">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <img src="logo.png" alt="icon" width="200">
+        <span class="Title">International Astronomy Program</span>
+      </div>
+        <p style="font-size: xx-large">
+            Apply to the IAP.
+        </p>
+        <p>
+            To apply answer these questions.
+            This page closes on 9/30/2025.
+        </p>
+      <div id="question-container">
+      <h1>&gt; Name</h1>
+      <div class="editable" id="name" contenteditable="true"></div>
+
+      <h1>&gt; Email</h1>
+      <div class="editable" id="emaildiv" contenteditable="true"></div>
+      <p id="error" style="color:red; display:none;">Please enter a valid email</p>
+
+      <h1>&gt; Age</h1>
+      <div class="editable" id="age" contenteditable="true"></div>
+
+      <h1>&gt; Country</h1>
+      <div class="editable" id="country" contenteditable="true"></div>
+
+      <h1>&gt; Whatsapp Number</h1>
+      <div class="editable" id="WSAN" contenteditable="true"></div>
+
+      <h1>&gt; School</h1>
+      <div class="editable" id="school" contenteditable="true"></div>
+
+      <h1>&gt; Earth takes 1 year to orbit the Sun at a distance of 1 AU. Using Kepler’s Third Law, estimate how many years Jupiter takes to orbit the Sun if it is about 5.2 AU away.</h1>
+      <div class="editable" id="Q1" contenteditable="true"></div>
+
+      <h1>&gt; Which astronomical discovery in history do you think was the most important, and why?</h1>
+      <div class="editable" id="Q2" contenteditable="true"></div>
+
+      <h1>&gt; If you could travel to any planet or moon in our solar system, where would you go and what would you hope to learn?</h1>
+      <div class="editable" id="Q3" contenteditable="true"></div>
+    </div>
+      <div id="THANK-YOU-SO-MUCH-A-FOR-TOO-PLAYING-MY-GAME" style="display: none">
+        <h1>Thank you for applying.</h1>
+      </div>
+    </div>
+    <center>
+      <button id="complete-btn" type="button">Submit</button>
+    </center>
+  </div>
+</section>
+
+<script>
+  let already_answered = false;
+  if (!localStorage.hasOwnProperty("Already in"))
+  {
+    localStorage.setItem("Already in", "false");
+  } else{
+    already_answered = localStorage.getItem("Already in");
+  }
+  if (already_answered === "true") {
+    hide_question()
+  }
+  function hide_question(){
+    var apply_button = document.getElementById("complete-btn");
+    var question_div = document.getElementById("question-container");
+    var thx_div = document.getElementById("THANK-YOU-SO-MUCH-A-FOR-TOO-PLAYING-MY-GAME");
+    question_div.style.display = "none";
+    apply_button.style.display = "none";
+    thx_div.style.display = "block";
+  }
+  const emailDiv = document.getElementById("emaildiv");
+  const errorMsg = document.getElementById("error");
+
+  function validateEmailDiv() {
+    const text = emailDiv.textContent.trim();
+
+    if (text === "") {
+      errorMsg.style.display = "none"; // empty is allowed until submit
+      emailDiv.style.borderColor = "#888";
+      return;
+    }
+
+    if (!text.includes("@")) {
+      errorMsg.style.display = "block";
+      emailDiv.style.borderColor = "red";
+    } else {
+      errorMsg.style.display = "none";
+      emailDiv.style.borderColor = "green";
+    }
+  }
+
+  // validate as the user types or when they leave the div
+  emailDiv.addEventListener("input", validateEmailDiv);
+  emailDiv.addEventListener("blur", validateEmailDiv);
+  const editableDivs = document.querySelectorAll(".editable");
+  editableDivs.forEach((editableDiv, index) => {
+    const key = "userText_" + index;
+    editableDiv.innerHTML = localStorage.getItem(key) || "";
+    editableDiv.addEventListener("input", () => {
+      localStorage.setItem(key, editableDiv.innerHTML);
+    });
+  });
+
+  // Age: keep only digits and preserve caret safely
+  const ageDiv = document.getElementById("age");
+  ageDiv.addEventListener("input", () => {
+    try {
+      const sel = window.getSelection();
+      let cursorPos = null;
+      if (sel && sel.rangeCount > 0) {
+        cursorPos = sel.getRangeAt(0).startOffset;
+      }
+
+      const text = ageDiv.textContent || "";
+      const clean = text.replace(/\D/g, "");
+
+      if (text !== clean) {
+        ageDiv.textContent = clean;
+
+        // restore caret if possible
+        if (sel) {
+          const range = document.createRange();
+          const node = ageDiv.firstChild || ageDiv;
+          const pos = Math.min(cursorPos || 0, clean.length);
+          try {
+            range.setStart(node, pos);
+            range.collapse(true);
+            sel.removeAllRanges();
+            sel.addRange(range);
+          } catch (err) {
+            // fallback: put caret at end
+            const endRange = document.createRange();
+            const endNode = ageDiv.firstChild || ageDiv;
+            const endPos = (ageDiv.firstChild && (ageDiv.firstChild.length || 0)) || ageDiv.childNodes.length;
+            try {
+              endRange.setStart(endNode, endPos);
+              endRange.collapse(true);
+              sel.removeAllRanges();
+              sel.addRange(endRange);
+            } catch (e) { /* swallow */ }
+          }
+        }
+      }
+    } catch (e) {
+      console.error("Age input handler error:", e);
+    }
+  });
+
+  // safer click wiring instead of inline onclick
+  document.getElementById("complete-btn").addEventListener("click", completed);
+
+async function completed() {
+    console.log("button clicked"); // debug
+    let done = true;
+    const editableDivs = document.querySelectorAll(".editable");
+    let scrolled_to_top = false;
+    editableDivs.forEach((editableDiv, index) => {
+      // remove old star in current and above element (if any)
+      [editableDiv, editableDiv.previousElementSibling, errorMsg].forEach(el => {
+        if (el && el.firstChild && el.firstChild.classList && el.firstChild.classList.contains("red-star")) {
+          el.removeChild(el.firstChild);
+        }
+      });
+
+      if (!editableDiv.textContent.trim()) {
+        done = false;
+        console.log(index + " is empty");
+        const above = editableDiv.previousElementSibling;
+        scrolled_to_top = failed(above,scrolled_to_top);
+      }
+    });
+    if (errorMsg.style.display !== "none"){
+      failed(errorMsg);
+      done = false;
+    }
+  if (done){
+    document.getElementById("complete-btn").disabled = true;
+    try {
+      await send_data(); // wait until it actually succeeds
+      localStorage.setItem("Already in", "true"); // mark as answered
+      location.reload(); // refresh page
+    } catch (err) {
+      console.error("Submission failed", err);
+      alert("Something went wrong saving your data.");
+    }
+  }
+}
+  function failed(el,scrolled) {
+          if (el) {
+
+              if (!scrolled){
+                el.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start"
+                });
+              }
+              const star = document.createElement("span");
+              star.textContent = "* ";
+              star.style.color = "red";
+              star.classList.add("red-star");
+              el.insertBefore(star, el.firstChild);
+              el.classList.remove("shake");
+              void el.offsetWidth;
+              el.classList.add("shake");
+              el.addEventListener("animationend", () => {
+                el.classList.remove("shake");
+              }, {once: true});
+            }
+          return true;
+          }
+</script>
+<script>
+async function send_data() {
+  const data = {
+    name: document.getElementById("name").innerText,
+    email: document.getElementById("emaildiv").innerText,
+    age: document.getElementById("age").innerText,
+    country: document.getElementById("country").innerText,
+    whatsappNumber: document.getElementById("WSAN").innerText,
+    school: document.getElementById("school").innerText,
+    Q1: document.getElementById("Q1").innerText,
+    Q2: document.getElementById("Q2").innerText,
+    Q3: document.getElementById("Q3").innerText
+  };
+
+  console.log("Sending data:", data);
+
+  try {
+    const response = await fetch("https://sief-site.om1233632.workers.dev/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      const t = await response.text().catch(() => "");
+      throw new Error(`Server returned ${response.status}: ${t}`);
+    }
+
+    const result = await response.json().catch(() => ({}));
+    console.log("Success:", result);
+    return true;
+  } catch (err) {
+    console.error("Error:", err);
+    return false;
+  }
+}
+
+</script>
+
+</body>
+</html>
