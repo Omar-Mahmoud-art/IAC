@@ -63,7 +63,7 @@
 	background: #f18636;
 	color: white;
 	font-weight: bold;
-	width: 220px;      /* desktop width */
+	width: 220px;
 	max-width: 90%;
     }
 
@@ -169,7 +169,7 @@
     const text = emailDiv.textContent.trim();
 
     if (text === "") {
-      errorMsg.style.display = "none"; // empty is allowed until submit
+      errorMsg.style.display = "none";
       emailDiv.style.borderColor = "#888";
       return;
     }
@@ -240,7 +240,6 @@
     }
   });
 
-  // safer click wiring instead of inline onclick
   document.getElementById("complete-btn").addEventListener("click", completed);
 
 async function completed() {
